@@ -355,4 +355,53 @@ header {
 
 .mensaje-no-resultados i {
     opacity: 0.3;
+
+}
+
+/* --- COMPACTAR HEADER PARA CELULARES --- */
+@media (max-width: 768px) {
+    /* Reduce el espacio interno del header */
+    header .container {
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+
+    /* Reduce el tamaño del logo para que no empuje hacia abajo */
+    .logo-principal {
+        max-height: 38px !important; 
+        width: auto;
+    }
+
+    /* Elimina el espacio sobrante entre la fila del logo y el buscador */
+    header .row {
+        --bs-gutter-y: 0.5rem !important; 
+    }
+
+    /* Hace el buscador un poco más delgado */
+    .buscador-tessa input {
+        padding-top: 4px !important;
+        padding-bottom: 4px !important;
+        font-size: 0.9rem;
+    }
+
+    /* Pega los filtros (categorías) al buscador */
+    #filtros {
+        margin-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+}
+
+/* --- TU FIRMA CREATIVA --- */
+.footer-autor {
+    font-size: 0.75rem;
+    color: #adb5bd;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.footer-autor i {
+    font-family: serif; /* Le da el toque elegante */
+    font-style: italic;
+    color: #dc3545; /* Rojo Tessa */
+    font-weight: 500;
 }
