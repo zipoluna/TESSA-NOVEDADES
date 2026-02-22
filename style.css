@@ -358,50 +358,41 @@ header {
 
 }
 
-/* --- COMPACTAR HEADER PARA CELULARES --- */
+
+
+
+
 @media (max-width: 768px) {
-    /* Reduce el espacio interno del header */
+    /* 1. Forzamos al header a no tener rellenos internos */
     header .container {
-        padding-top: 5px !important;
+        padding-top: 2px !important;
         padding-bottom: 5px !important;
+        margin-top: 0 !important;
     }
 
-    /* Reduce el tamaño del logo para que no empuje hacia abajo */
-    .logo-principal {
-        max-height: 38px !important; 
-        width: auto;
-    }
-
-    /* Elimina el espacio sobrante entre la fila del logo y el buscador */
+    /* 2. Eliminamos el espacio entre el logo y el buscador */
     header .row {
-        --bs-gutter-y: 0.5rem !important; 
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        --bs-gutter-y: 0 !important; /* Elimina espacio vertical de Bootstrap */
     }
 
-    /* Hace el buscador un poco más delgado */
-    .buscador-tessa input {
-        padding-top: 4px !important;
-        padding-bottom: 4px !important;
-        font-size: 0.9rem;
+    /* 3. Ajustamos el logo para que sea compacto */
+    .logo-principal {
+        max-height: 32px !important; 
+        margin-top: 2px !important;
     }
 
-    /* Pega los filtros (categorías) al buscador */
+    /* 4. Subimos el buscador */
+    .buscador-tessa {
+        margin-top: 2px !important;
+    }
+
+    /* 5. Pegamos los filtros al buscador */
     #filtros {
-        margin-top: 5px !important;
-        padding-bottom: 5px !important;
+        margin-top: 2px !important;
+        padding-top: 0 !important;
     }
 }
 
-/* --- TU FIRMA CREATIVA --- */
-.footer-autor {
-    font-size: 0.75rem;
-    color: #adb5bd;
-    margin-top: 15px;
-    text-align: center;
-}
 
-.footer-autor i {
-    font-family: serif; /* Le da el toque elegante */
-    font-style: italic;
-    color: #dc3545; /* Rojo Tessa */
-    font-weight: 500;
-}
