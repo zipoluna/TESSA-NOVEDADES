@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TESSA - NOVEDADES</title>
+    <link rel="icon" href="src/icon-compras.png" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light">
+    <header class="bg-white border-bottom sticky-top shadow-sm">
+        <div class="container py-3">
+            <div class="row align-items-center g-3">
+                <div class="col-5 col-md-3 text-start">
+                    <img src="src/logo.png" alt="TESSA" class="logo-principal" onclick="volverInicio()">
+                </div>
+                <div class="col-7 col-md-9 text-center">
+                    <div class="input-group buscador-tessa">
+                        <span class="input-group-text bg-light border-0 rounded-start-pill text-muted" 
+                              onclick="limpiarBusqueda()" style="cursor: pointer;">
+                            <i id="boton-lupa-icono" class="bi bi-search"></i>
+                        </span>
+
+                        <input type="search" id="input-busqueda" 
+                               class="form-control border-0 bg-light py-1 rounded-end-pill" 
+                               placeholder="¿Qué buscas hoy?" 
+                               oninput="buscarProducto()"
+                               onsearch="buscarProducto()">
+                    </div>
+                </div>
+            </div>
+
+            <nav id="filtros" class="no-scrollbar mt-3">
+                <button class="btn btn-sm btn-danger active" onclick="filtrar(event, 'todos')">Todo</button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'accesorios')">Accesorios</button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'arteypinceles')">Arte</button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'baño')">Baño</button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'bazzarytradicion')">Tradición</button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'camisetas')">Camisetas</button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'conjuntos')">Conjuntos</button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'mochilas')">Mochilas</button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'peluches')">Peluches</button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'remeras')">Remeras</button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'shorts')">Shorts</button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'termos')">Termos</button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'vestidos')">Vestidos</button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'zapateria')">Zapatería</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="py-4">
+        <div class="container">
+            <div id="contenedor-productos" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4"></div>
+        </div>
+    </main>
+
+    <div id="modal-imagen" class="modal-galeria" onclick="cerrarModal()">
+        <span class="cerrar">&times;</span>
+        <img id="img-grande" class="modal-contenido" onclick="event.stopPropagation()">
+        <div id="modal-puntos-contenedor" class="modal-puntos" onclick="event.stopPropagation()"></div>
+        <div id="caption" class="text-center text-white mt-2 fw-bold"></div>
+    </div>
+
+    <div id="barra-carrito" class="barra-carrito shadow-lg" style="display: none;" onclick="verResumen()">
+        <div class="container d-flex justify-content-between align-items-center w-100">
+            <div class="info-carrito">
+                <span id="cantidad-items" class="badge bg-danger rounded-circle pulse">0</span>
+                <span class="ms-2 fw-bold text-secondary small text-uppercase">Ver mi pedido</span>
+            </div>
+            <button onclick="verResumen(); event.stopPropagation();" class="btn btn-success fw-bold rounded-pill px-4 shadow-sm">Finalizar Pedido</button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalCarrito" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-cart3 text-danger me-2"></i>Tu Pedido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input type="text" id="nombre-cliente" class="form-control rounded-pill border-0 bg-light" placeholder="Tu Nombre y Apellido">
+                    </div>
+                    <div class="d-flex gap-3 mb-3 px-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="metodoEntrega" id="opcionEnvio" value="Envío a domicilio" checked onchange="toggleCiudad(true)">
+                            <label class="form-check-label small fw-bold" for="opcionEnvio">🛵 Envío</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="metodoEntrega" id="opcionRetiro" value="Pasa a retirar" onchange="toggleCiudad(false)">
+                            <label class="form-check-label small fw-bold" for="opcionRetiro">🛍️ Retiro</label>
+                        </div>
+                    </div>
+                    <div class="mb-3" id="contenedor-ciudad">
+                        <input type="text" id="ciudad-cliente" class="form-control rounded-pill border-0 bg-light" placeholder="Ciudad para el envío">
+                    </div>
+                    <hr class="text-muted opacity-25">
+                    <div id="lista-carrito-resumen"></div>
+                    <hr class="text-muted">
+                    <div class="d-flex justify-content-between align-items-center fw-bold fs-5 px-2">
+                        <span>Total:</span><span id="total-resumen" class="text-danger">0 Gs.</span>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-light rounded-pill px-4 fw-bold text-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success rounded-pill px-4 fw-bold shadow-sm btn-finalizar-ws" onclick="finalizarPedido()">
+                        WhatsApp <i class="bi bi-whatsapp"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/595981229871" class="btn-flotante shadow-lg" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <footer class="bg-white border-top py-5 mt-5 text-center text-md-start">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <h6 class="fw-bold text-uppercase mb-3">TESSA NOVEDADES</h6>
+                    <p class="text-muted small">Tu tienda favorita de ropa y accesorios en Paraguay.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="text-muted small mb-2"><i class="bi bi-truck text-danger"></i> Envíos a todo el país</div>
+                    <div class="text-muted fs-4">
+                        <i class="bi bi-credit-card-2-back"></i> <i class="bi bi-cash-stack"></i> <i class="bi bi-qr-code-scan"></i>
+                    </div>
+                </div>
+                <div class="col-md-4 text-md-end text-center">
+                    <h6 class="fw-bold text-uppercase mb-3">Síguenos</h6>
+                    <a href="https://www.facebook.com/profile.php?id=61586514245838" target="_blank" class="btn btn-outline-primary btn-sm rounded-circle me-2"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.instagram.com/tessanovedades/" target="_blank" class="btn btn-outline-danger btn-sm rounded-circle"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+            <hr class="text-muted opacity-25">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pt-2 small text-muted">
+                <div>© 2026 TESSA NOVEDADES | Paraguay.</div>
+                <div class="footer-creditos">created by <span>m.luna</span></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
