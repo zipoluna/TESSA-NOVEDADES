@@ -21,7 +21,7 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-    body { padding-top: 140px; }
+    body { padding-top: 0px; }
 }
 
 img {
@@ -306,3 +306,4 @@ header {
         padding-top: 2px !important;
     }
 }
+
