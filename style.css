@@ -263,6 +263,12 @@ header {
    ======================================================= */
 
 @media (max-width: 768px) {
+    .contenedor-productos { 
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Crea 2 columnas iguales */
+    gap: 15px; /* Espacio entre las columnas */
+    padding: 10px;
+    }
     /* 1. Eliminamos el margen superior de toda la página */
     body {
         padding-top: 0 !important;
@@ -307,5 +313,6 @@ header {
         padding-top: 2px !important;
     }
 }
+
 
 
