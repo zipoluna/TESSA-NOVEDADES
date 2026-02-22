@@ -81,6 +81,7 @@ header {
     flex-wrap: wrap;
     gap: 8px;
     padding: 10px 0;
+    justify-content: center;
 }
 
 #filtros .btn {
@@ -306,4 +307,5 @@ header {
         padding-top: 2px !important;
     }
 }
+
 
