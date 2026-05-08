@@ -320,7 +320,7 @@ header {
 
 .btn-menu-categorias {
     height: 45px;
-    border-radius: 14px;
+    border-radius: 0px;
     padding: 0 18px;
     border: none;
     background: white;
