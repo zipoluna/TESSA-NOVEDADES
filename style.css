@@ -16,11 +16,12 @@
 body { 
     font-family: 'Segoe UI', Roboto, sans-serif; 
     background-color: var(--tessa-fondo); 
-    padding-top: 85px !important; /* Ajusta este número hasta que el logo se vea bien */
-    margin-top: 0 !important;
+    padding-bottom: 80px;
+    padding-top: 10px; 
 }
+
 @media screen and (max-width: 768px) {
-    body { padding-top: 60px; }
+    body { padding-top: 0px; }
 }
 
 img {
@@ -37,14 +38,17 @@ img {
 header {
     position: fixed;
     top: 0;
-    left: 0;
     width: 100%;
     z-index: 2000;
     background: white;
+    transition: transform 0.35s ease, box-shadow 0.3s ease;
 }
 
+.header-oculto { transform: translateY(-100%); }
+.header-scroll { box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+
 .logo-principal {
-    height: 40px; 
+    height: 45px; 
     width: auto;
     object-fit: contain;
     cursor: pointer;
@@ -64,189 +68,75 @@ header {
     background-color: transparent !important;
 }
 
-/* =======================================================
-   SISTEMA DE TARJETAS (CORRECCIÓN DE ALINEACIÓN)
-   ======================================================= */
-
-/* Forzar que todas las tarjetas tengan la misma altura */
-.card {
-    height: 100%;
-    border: none !important;
-    border-radius: 15px !important;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-/* Forzar que todas las imágenes midan lo mismo */
-.card-img-top {
-    aspect-ratio: 1 / 1; /* Cuadrado perfecto o usa 3 / 4 para vertical */
-    object-fit: cover;
-    background-color: #f8f9fa;
-}
-
-/* Cuerpo de la tarjeta flexible */
-.card-body {
-    padding: 12px !important;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Empuja el botón al fondo */
-}
-
-/* Título con altura fija (Máximo 2 líneas) */
-.card-title {
-    font-size: 0.9rem !important;
-    font-weight: 600;
-    margin-bottom: 8px;
-    height: 2.6rem; /* Altura fija para 2 líneas */
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    color: var(--tessa-gris-oscuro);
-}
-
-/* Precio siempre en el mismo lugar */
-.precio-producto {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: var(--tessa-rojo);
-    margin-bottom: 10px;
-    margin-top: auto; /* Empuja el precio arriba del botón */
-}
-
-/* Estilo para etiquetas de "Limitado", "Solo Negro", etc. */
-.badge-nota {
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    padding: 4px 8px;
-    border-radius: 4px;
-    background-color: #fff3cd; /* Amarillo suave */
-    color: #856404;
-    margin-bottom: 8px;
-    display: inline-block;
-    align-self: flex-start;
+#input-busqueda:focus {
+    box-shadow: none !important;
+    outline: none;
 }
 
 /* =======================================================
-   WHATSAPP FLOTANTE
+   NUEVO: WHATSAPP FLOTANTE CON BURBUJA (CIRUGÍA FINAL)
    ======================================================= */
+
+/* Contenedor principal que agrupa burbuja e icono */
 .contenedor-whatsapp {
     position: fixed;
-    bottom: 90px;
-    right: 15px;
+    bottom: 80px;
+    right: 20px;
     display: flex;
     align-items: center;
-    z-index: 5000;
+    z-index: 9999 !important; /* Asegura que esté por encima de todo */
 }
 
+/* Estilo de la burbuja de texto */
 .burbuja-ayuda {
     background-color: white;
-    color: var(--tessa-gris-oscuro);
+    color: var(--tessa-gris-oscuro) !important;
     padding: 8px 15px;
     border-radius: 18px 18px 0 18px;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    margin-right: 10px;
+    margin-right: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
     border: 1px solid #eee;
+    white-space: nowrap;
     animation: flotarBurbuja 3s infinite ease-in-out;
 }
 
+/* Estilo del botón (ajustado para vivir dentro del contenedor) */
 .btn-flotante {
+    position: relative !important;
+    bottom: 0 !important;
+    right: 0 !important;
     background-color: var(--verde-whatsapp);
-    width: 55px;
-    height: 55px;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     transition: transform 0.3s ease;
-    text-decoration: none;
 }
 
-.btn-flotante:hover { transform: scale(1.1); color: white; }
+.btn-flotante img {
+    width: 35px;
+    height: 35px;
+}
 
+.btn-flotante:hover {
+    transform: scale(1.1);
+}
+
+/* Animación de levitación */
 @keyframes flotarBurbuja {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-6px); }
 }
 
-/* =======================================================
-   MODAL GALERÍA Y CARRITO
-   ======================================================= */
-.modal-content {
-    border-radius: 20px !important;
-    border: none !important;
+/* Ajuste para móviles muy pequeños */
+@media screen and (max-width: 400px) {
+    .burbuja-ayuda {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+    }
 }
-
-.firma-autor-discreta {
-    font-size: 0.85rem;
-    color: var(--tessa-gris-suave);
-}
-
-.nombre-firma {
-    font-family: 'Dancing Script', cursive;
-    color: var(--tessa-rojo);
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-
-/* =======================================================
-   CARRITO BARRA
-   ======================================================= */
-.barra-carrito {
-    position: fixed;
-    bottom: 0; left: 0; width: 100%;
-    background: white;
-    border-top: 2px solid var(--tessa-rojo);
-    padding: 10px 0;
-    z-index: 4000;
-    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
-}
-
-/* =======================================================
-   FONDO ANIMADO
-   ======================================================= */
-.fondo-animado {
-    position: fixed;
-    inset: 0;
-    overflow: hidden;
-    z-index: -1;
-    pointer-events: none;
-}
-
-.fondo-animado span {
-    position: absolute;
-    display: block;
-    width: 50vw;
-    height: 50vw;
-    background: radial-gradient(circle, rgba(230,57,70,0.08) 0%, transparent 70%);
-    filter: blur(50px);
-    animation: moverOndas 20s infinite alternate ease-in-out;
-}
-
-@keyframes moverOndas {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(30px, -30px) scale(1.1); }
-}
-
-/* =======================================================
-   AJUSTES MENÚ CATEGORÍAS
-   ======================================================= */
-.menu-categorias {
-    min-width: 350px !important;
-    border-radius: 15px !important;
-    border: none !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
-}
-
-.scroll-categorias::-webkit-scrollbar { width: 4px; }
-.scroll-categorias::-webkit-scrollbar-thumb { background: #eee; border-radius: 10px; }
