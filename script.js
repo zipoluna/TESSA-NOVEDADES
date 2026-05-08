@@ -94,6 +94,56 @@ function mostrarProductos(lista) {
     });
 }
 
+function mostrarCategoriasInicio() {
+
+    const contenedor = document.getElementById("contenedor-productos");
+
+    contenedor.innerHTML = "";
+
+    const categoriasMostradas = new Set();
+
+    const productosCategorias = productos.filter(producto => {
+
+        if (!categoriasMostradas.has(producto.categoria)) {
+            categoriasMostradas.add(producto.categoria);
+            return true;
+        }
+
+        return false;
+    });
+
+    productosCategorias.forEach(producto => {
+
+        const categoriaBonita =
+            producto.categoria.charAt(0).toUpperCase() +
+            producto.categoria.slice(1);
+
+        contenedor.innerHTML += `
+
+            <div class="col">
+
+                <div class="card categoria-card shadow-sm border-0"
+                     onclick="filtrarMenu('${producto.categoria}')">
+
+                    <img src="${producto.fotos[0]}"
+                         class="card-img-top categoria-img">
+
+                    <div class="card-body text-center">
+
+                        <h5 class="fw-bold categoria-titulo mb-0">
+                            ${categoriaBonita}
+                        </h5>
+
+                    </div>
+
+                </div>
+
+            </div>
+        `;
+    });
+}
+
+
 // carrito con talles
 function agregarAlCarritoConTalle(id, elementoBtn) {
     const producto = productos.find(p => p.id === id);
@@ -363,7 +413,7 @@ function volverProductosInicio() {
         return false;
     });
 
-    mostrarProductos(productosInicio);
+    mostrarCategoriasInicio();
 }
 
             
@@ -414,19 +464,7 @@ setInterval(() => {
 
 window.onload = () => {
 
-    const categoriasMostradas = new Set();
-
-    const productosInicio = productos.filter(producto => {
-
-        if (!categoriasMostradas.has(producto.categoria)) {
-            categoriasMostradas.add(producto.categoria);
-            return true;
-        }
-
-        return false;
-    });
-
-    mostrarProductos(productosInicio);
+    mostrarCategoriasInicio();
 
     actualizarBarraCarrito();
 };
