@@ -349,6 +349,24 @@ function buscarProducto() {
     mostrarProductos(filtrados);
 }
 
+function volverProductosInicio() {
+
+    const categoriasMostradas = new Set();
+
+    const productosInicio = productos.filter(producto => {
+
+        if (!categoriasMostradas.has(producto.categoria)) {
+            categoriasMostradas.add(producto.categoria);
+            return true;
+        }
+
+        return false;
+    });
+
+    mostrarProductos(productosInicio);
+}
+
+            
 function toggleCiudad(mostrar) {
     const contenedor = document.getElementById("contenedor-ciudad");
     if(contenedor) contenedor.style.display = mostrar ? "block" : "none";
@@ -433,7 +451,7 @@ function limpiarBusqueda() {
     const btnLupa = document.getElementById("boton-lupa-icono");
     input.value = "";
     if(btnLupa) btnLupa.className = "bi bi-search";
-    mostrarProductos(productos);
+    volverProductosInicio();
 }
 
 function volverInicio() {
