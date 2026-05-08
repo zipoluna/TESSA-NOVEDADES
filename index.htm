@@ -22,61 +22,72 @@
                 <div class="col-5 col-md-3 text-start">
                     <img src="src/logo.png" alt="TESSA" class="logo-principal" onclick="volverInicio()">
                 </div>
-                <div class="col-7 col-md-9 text-center">
+            <div class="col-7 col-md-9 text-center">
 
-                    <div class="d-flex align-items-center gap-2 w-100">
-    <div class="input-group buscador-tessa flex-grow-1">
-        <span class="input-group-text bg-light border-0 text-muted" 
-              onclick="limpiarBusqueda()" style="cursor: pointer;">
-            <i id="boton-lupa-icono" class="bi bi-search"></i>
-        </span>
-        <input type="search" id="input-busqueda" 
-               class="form-control border-0 bg-light py-1" 
-               placeholder="Buscar..." 
-               oninput="buscarProducto()"
-               onsearch="buscarProducto()">
-    </div>
-
-    <div class="dropdown">
-        <button class="btn btn-menu-categorias shadow-sm"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false">
-            <div class="d-flex align-items-center gap-2">
-                <i class="bi bi-grid"></i>
-                <small class="fw-bold d-none d-sm-inline">Categorías</small>
+            <div class="d-flex align-items-center gap-2 w-100">
+            <div class="input-group buscador-tessa flex-grow-1">
+                <span class="input-group-text bg-light border-0 text-muted" 
+                      onclick="limpiarBusqueda()" style="cursor: pointer;">
+                    <i id="boton-lupa-icono" class="bi bi-search"></i>
+                </span>
+                <input type="search" id="input-busqueda" 
+                       class="form-control border-0 bg-light py-1" 
+                       placeholder="Buscar..." 
+                       oninput="buscarProducto()"
+                       onsearch="buscarProducto()">
             </div>
-        </button>
 
-        <ul class="dropdown-menu dropdown-menu-end shadow border-0 menu-categorias">
-            <li><a class="dropdown-item" href="#" onclick="filtrarMenu('todos')">Todo</a></li>
-            <li><a class="dropdown-item" href="#" onclick="filtrarMenu('accesorios')">Accesorios</a></li>
-            <li><a class="dropdown-item" href="#" onclick="filtrarMenu('arteypinceles')">Arte</a></li>
-            <li><a class="dropdown-item" href="#" onclick="filtrarMenu('baño')">Baño</a></li>
-            <li><a class="dropdown-item" href="#" onclick="filtrarMenu('bazzarytradicion')">Tradición</a></li>
-            <li><a class="dropdown-item" href="#" onclick="filtrarMenu('camisetas')">Camisetas</a></li>
-            <li><a class="dropdown-item" href="#" onclick="filtrarMenu('conjuntos')">Conjuntos</a></li>
-            <li><a class="dropdown-item" href="#" onclick="filtrarMenu('mochilas')">Mochilas</a></li>
-            <li><a class="dropdown-item" href="#" onclick="filtrarMenu('peluches')">Peluches</a></li>
-            <li><a class="dropdown-item" href="#" onclick="filtrarMenu('remeras')">Remeras</a></li>
-            <li><a class="dropdown-item" href="#" onclick="filtrarMenu('shorts')">Shorts</a></li>
-            <li><a class="dropdown-item" href="#" onclick="filtrarMenu('termos')">Termos</a></li>
-            <li><a class="dropdown-item" href="#" onclick="filtrarMenu('vestidos')">Vestidos</a></li>
-            <li><a class="dropdown-item" href="#" onclick="filtrarMenu('zapateria')">Zapatería</a></li>
-        </ul>
-    </div>
-                    </div>
+                <div class="dropdown">
+                    <button class="btn btn-menu-categorias shadow-sm"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-grid"></i>
+                            <small class="fw-bold d-none d-sm-inline">Categorías</small>
+                        </div>
+                    </button>
+        
+                    <ul class="dropdown-menu dropdown-menu-end shadow border-0 menu-categorias p-3">
+                        <div class="container-fluid">
+                            <div class="row" style="min-width: 320px;">
+                                <div class="col-5 border-end">
+                                    <h6 class="dropdown-header text-danger fw-bold ps-0 mb-2">PARA:</h6>
+                                    <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarPublico('damas')">Damas</a></li>
+                                    <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarPublico('caballeros')">Caballeros</a></li>
+                                    <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarPublico('niños')">Niños</a></li>
+                                </div>
                     
-
-
-                    
-
+                                <div class="col-7">
+                                    <h6 class="dropdown-header text-muted fw-bold ps-2 mb-2">CATEGORÍAS:</h6>
+                                    <div class="scroll-categorias" style="max-height: 280px; overflow-y: auto;">
+                                        <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('todos')">Todo</a></li>
+                                        <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('accesorios')">Accesorios</a></li>
+                                        <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('arteypinceles')">Arte</a></li>
+                                        <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('baño')">Baño</a></li>
+                                        <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('bazzarytradicion')">Tradición</a></li>
+                                        <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('camisetas')">Camisetas</a></li>
+                                        <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('conjuntos')">Conjuntos</a></li>
+                                        <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('mochilas')">Mochilas</a></li>
+                                        <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('peluches')">Peluches</a></li>
+                                        <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('remeras')">Remeras</a></li>
+                                        <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('shorts')">Shorts</a></li>
+                                        <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('termos')">Termos</a></li>
+                                        <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('vestidos')">Vestidos</a></li>
+                                        <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('zapateria')">Zapatería</a></li>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
                 </div>
             </div>
+          </div>
+     </div>
 
 
             
-        </div>
+    </div>
     </header>
 
     <main class="py-4">
