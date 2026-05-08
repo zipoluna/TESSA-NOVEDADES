@@ -351,14 +351,40 @@ function actualizarModal() {
 
 function cerrarModal() { document.getElementById("modal-imagen").style.display = "none"; }
 
+// 1. FILTRAR POR CATEGORÍA (Modificada para cerrar el menú)
 function filtrarMenu(cat) {
     const filtrados = cat === 'todos'
         ? productos
         : productos.filter(p => p.categoria === cat);
 
     mostrarProductos(filtrados);
+    
+    // IMPORTANTE: Cerramos el menú tras la elección
+    cerrarMenuCategorias();
 }
 
+// 2. NUEVA: FILTRAR POR PÚBLICO (Damas, Caballeros, Niños)
+function filtrarPublico(genero) {
+    // Filtramos buscando coincidencia en el nuevo campo 'genero'
+    const filtrados = productos.filter(p => p.genero === genero);
+
+    mostrarProductos(filtrados);
+    
+    // Cerramos el menú tras la elección
+    cerrarMenuCategorias();
+}
+
+// 3. FUNCIÓN DE APOYO: El cierre automático
+function cerrarMenuCategorias() {
+    // Buscamos el botón que despliega el menú
+    const btnDropdown = document.querySelector('.btn-menu-categorias');
+    
+    // Usamos la lógica de Bootstrap para ocultarlo
+    const instance = bootstrap.Dropdown.getInstance(btnDropdown);
+    if (instance) {
+        instance.hide();
+    }
+}
 
 function filtrar(e, cat) {
     const filtrados = cat === 'todos'
