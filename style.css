@@ -383,3 +383,60 @@ header {
     color: var(--tessa-gris-oscuro);
     letter-spacing: 1px;
 }
+
+/* =======================================================
+   FONDO ANIMADO PREMIUM
+   ======================================================= */
+
+.fondo-animado {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.fondo-animado span {
+    position: absolute;
+    display: block;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(
+        circle,
+        rgba(230,57,70,0.10) 0%,
+        rgba(230,57,70,0.04) 40%,
+        transparent 70%
+    );
+
+    border-radius: 50%;
+    filter: blur(50px);
+    animation: moverOndas 18s infinite alternate ease-in-out;
+}
+
+.fondo-animado span:nth-child(1) {
+    top: -10%;
+    left: -10%;
+}
+
+.fondo-animado span:nth-child(2) {
+    top: 40%;
+    right: -15%;
+    animation-duration: 22s;
+}
+
+.fondo-animado span:nth-child(3) {
+    bottom: -20%;
+    left: 20%;
+    animation-duration: 26s;
+}
+
+@keyframes moverOndas {
+
+    0% {
+        transform: translate(0px, 0px) scale(1);
+    }
+
+    100% {
+        transform: translate(40px, -40px) scale(1.15);
+    }
+}
