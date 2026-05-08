@@ -1,397 +1,211 @@
-// =======================================================
-// BASE DE DATOS DE PRODUCTOS
-// =======================================================
-const productos = [
-    { id: 1,  nombre: "Cinto 001",              categoria: "accesorios",      genero: "caballeros", precio: 1500,  fotos: ["assets/accesorios/cinto-001.jpg"], nota: "Cuero Legítimo" },
-    { id: 2,  nombre: "Cinto 002",              categoria: "accesorios",      genero: "caballeros", precio: 1500,  fotos: ["assets/accesorios/cinto-002.jpg"] },
-    { id: 3,  nombre: "Touch 36 Pcs",           categoria: "arteypinceles",   genero: "unisex",     precio: 2500,  fotos: ["assets/arteypinceles/touch-36pcs.jpg"], nota: "Oferta" },
-    { id: 4,  nombre: "Touch 48 Pcs",           categoria: "arteypinceles",   genero: "unisex",     precio: 3200,  fotos: ["assets/arteypinceles/touch-48pcs.jpg"] },
-    { id: 5,  nombre: "Salida 001",             categoria: "baño",            genero: "damas",      precio: 3500,  fotos: ["assets/baño/salida-001.jpg"] },
-    { id: 6,  nombre: "Salida 002",             categoria: "baño",            genero: "damas",      precio: 3500,  fotos: ["assets/baño/salida-002.jpg"] },
-    { id: 7,  nombre: "Set Baño 001",           categoria: "baño",            genero: "damas",      precio: 4500,  fotos: ["assets/baño/set3-001.jpg"] },
-    { id: 8,  nombre: "Set Guampa 001",         categoria: "bazzarytradicion",genero: "unisex",     precio: 5500,  fotos: ["assets/bazzarytradicion/setguampa-001.jpg"] },
-    { id: 9,  nombre: "Set Guampa 002",         categoria: "bazzarytradicion",genero: "unisex",     precio: 5500,  fotos: ["assets/bazzarytradicion/setguampa-002.jpg"] },
-    { id: 11, nombre: "Camiseta Cerro 24/25",   categoria: "camisetas",       genero: "caballeros", precio: 4500,  fotos: ["assets/camisetas/cam-cerro2425-001.jpg"], nota: "Nueva Temporada" },
-    { id: 12, nombre: "Camiseta Paraguay 24/25",categoria: "camisetas",       genero: "caballeros", precio: 4500,  fotos: ["assets/camisetas/cam-paraguay2425-001.jpg"] },
-    { id: 13, nombre: "Conjunto 001",           categoria: "conjuntos",       genero: "damas",      precio: 6500,  fotos: ["assets/conjuntos/conjunto-001.jpg"] },
-    { id: 14, nombre: "Conjunto 002",           categoria: "conjuntos",       genero: "damas",      precio: 6500,  fotos: ["assets/conjuntos/conjunto-002.jpg"] },
-    { id: 15, nombre: "Conjunto 003",           categoria: "conjuntos",       genero: "damas",      precio: 6500,  fotos: ["assets/conjuntos/conjunto-003.jpg"] },
-    { id: 16, nombre: "Mochila Dama 001",       categoria: "mochilas",        genero: "damas",      precio: 7500,  fotos: ["assets/mochilas/mochi-dam-001.jpg"] },
-    { id: 17, nombre: "Mochila Dama 002",       categoria: "mochilas",        genero: "damas",      precio: 7500,  fotos: ["assets/mochilas/mochi-dam-002.jpg"] },
-    { id: 18, nombre: "Mochila Pikachu",        categoria: "mochilas",        genero: "niños",      precio: 6000,  fotos: ["assets/mochilas/mochi-pikachu-001.jpg"] },
-    { id: 19, nombre: "Peluche Angel",          categoria: "peluches",        genero: "niños",      precio: 4000,  fotos: ["assets/peluches/angel-sv.jpg"] },
-    { id: 20, nombre: "Peluche Stitch",         categoria: "peluches",        genero: "niños",      precio: 4000,  fotos: ["assets/peluches/stitch-sv.jpg"] },
-    { id: 23, nombre: "Oversize M001",          categoria: "remeras",         genero: "caballeros", precio: 3500,  fotos: ["assets/remeras/oversize-m001-frente.jpg","assets/remeras/oversize-m001-atras.jpg"], nota: "Solo en Negro" },
-    { id: 24, nombre: "Oversize M002",          categoria: "remeras",         genero: "caballeros", precio: 3500,  fotos: ["assets/remeras/oversize-m002-frente.jpg","assets/remeras/oversize-m002-atras.jpg"], nota: "Stock Limitado" },
-    { id: 25, nombre: "Short Dama M001",        categoria: "shorts",          genero: "damas",      precio: 3000,  fotos: ["assets/shorts/short-dama-m001.jpg"] },
-    { id: 26, nombre: "Short Dama M002",        categoria: "shorts",          genero: "damas",      precio: 3000,  fotos: ["assets/shorts/short-dama-m002.jpg"] },
-    { id: 27, nombre: "Set Stanley Rojo",       categoria: "termos",          genero: "unisex",     precio: 12000, fotos: ["assets/termos/set-stanley-rojo.jpg"], nota: "Importado" },
-    { id: 28, nombre: "Set Stanley Violeta",    categoria: "termos",          genero: "unisex",     precio: 12000, fotos: ["assets/termos/set-stanley-violeta.jpg"] },
-    { id: 29, nombre: "Vestido M01",            categoria: "vestidos",        genero: "damas",      precio: 5500,  fotos: ["assets/vestidos/vestido-m01.jpg"] },
-    { id: 30, nombre: "Vestido M02",            categoria: "vestidos",        genero: "damas",      precio: 5500,  fotos: ["assets/vestidos/vestido-m02.jpg"] },
-    { id: 31, nombre: "Dama Marrón",            categoria: "zapateria",       genero: "damas",      precio: 8000,  fotos: ["assets/zapateria/dama-m001-marron.jpg"] },
-    { id: 32, nombre: "Dama Negro",             categoria: "zapateria",       genero: "damas",      precio: 8000,  fotos: ["assets/zapateria/dama-m001-negro.jpg"] },
-];
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TESSA - NOVEDADES</title>
+    <link rel="icon" href="src/icon-compras.png" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+</head>
+<body class="bg-light">
 
-const categorias = [
-    { id: "accesorios",       nombre: "Accesorios",        imagen: "assets/accesorios/cinto-001.jpg" },
-    { id: "arteypinceles",    nombre: "Arte y Pinceles",   imagen: "assets/arteypinceles/touch-36pcs.jpg" },
-    { id: "baño",             nombre: "Baño",              imagen: "assets/baño/salida-001.jpg" },
-    { id: "bazzarytradicion", nombre: "Bazar y Tradición", imagen: "assets/bazzarytradicion/setguampa-001.jpg" },
-    { id: "camisetas",        nombre: "Camisetas",         imagen: "assets/camisetas/cam-cerro2425-001.jpg" },
-    { id: "conjuntos",        nombre: "Conjuntos",         imagen: "assets/conjuntos/conjunto-001.jpg" },
-    { id: "mochilas",         nombre: "Mochilas",          imagen: "assets/mochilas/mochi-dam-001.jpg" },
-    { id: "peluches",         nombre: "Peluches",          imagen: "assets/peluches/stitch-sv.jpg" },
-    { id: "remeras",          nombre: "Remeras",           imagen: "assets/remeras/oversize-m001-frente.jpg" },
-    { id: "shorts",           nombre: "Shorts",            imagen: "assets/shorts/short-dama-m001.jpg" },
-    { id: "termos",           nombre: "Termos",            imagen: "assets/termos/set-stanley-rojo.jpg" },
-    { id: "vestidos",         nombre: "Vestidos",          imagen: "assets/vestidos/vestido-m01.jpg" },
-    { id: "zapateria",        nombre: "Zapatería",         imagen: "assets/zapateria/dama-m001-marron.jpg" },
-];
+<div class="fondo-animado">
+    <span></span><span></span><span></span>
+</div>
 
-let fotosActuales = [];
-let indiceActual = 0;
-let productosMostrados = [];
-let carrito = JSON.parse(localStorage.getItem('carrito_tessa')) || [];
-let vistaActual = "categorias";
+<header class="bg-white border-bottom sticky-top shadow-sm">
+    <div class="container py-1">
+        <div class="row align-items-center g-3">
+            <div class="col-5 col-md-3 text-start">
+                <img src="src/logo.png" alt="TESSA" class="logo-principal" onclick="volverInicio()">
+            </div>
+            <div class="col-7 col-md-9 text-center">
+                <div class="d-flex align-items-center gap-2 w-100">
 
-// =======================================================
-// VISTA DE CATEGORÍAS
-// =======================================================
-function mostrarCategoriasInicio(filtroGenero) {
-    filtroGenero = filtroGenero || null;
-    vistaActual = "categorias";
-    const contenedor = document.getElementById("contenedor-productos");
-    if (!contenedor) return;
+                    <div class="input-group buscador-tessa flex-grow-1">
+                        <span class="input-group-text bg-light border-0 text-muted"
+                              onclick="limpiarBusqueda()" style="cursor:pointer;">
+                            <i id="boton-lupa-icono" class="bi bi-search"></i>
+                        </span>
+                        <input type="search" id="input-busqueda"
+                               class="form-control border-0 bg-light py-1"
+                               placeholder="Buscar..."
+                               oninput="buscarProducto()"
+                               onsearch="buscarProducto()">
+                    </div>
 
-    let categoriasAMostrar = categorias;
-    if (filtroGenero) {
-        const ids = [...new Set(
-            productos
-                .filter(p => p.genero === filtroGenero || p.genero === "unisex")
-                .map(p => p.categoria)
-        )];
-        categoriasAMostrar = categorias.filter(c => ids.includes(c.id));
-    }
+                    <div class="dropdown">
+                        <button class="btn btn-menu-categorias shadow-sm"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="bi bi-grid"></i>
+                                <small class="fw-bold d-none d-sm-inline">Categorías</small>
+                            </div>
+                        </button>
 
-    contenedor.innerHTML = "";
-    const tituloHTML = '<div class="col-12 mb-2"><h5 class="fw-bold text-uppercase text-muted" style="font-size:0.8rem;letter-spacing:2px;">' +
-        (filtroGenero ? 'Para: <span class="text-danger text-capitalize">' + filtroGenero + '</span>' : 'Todas las Categorías') +
-        '</h5></div>';
-    contenedor.innerHTML = tituloHTML;
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 menu-categorias p-3">
+                            <div class="container-fluid">
+                                <div class="row" style="min-width:320px;">
+                                    <div class="col-5 border-end">
+                                        <h6 class="dropdown-header text-danger fw-bold ps-0 mb-2">VER PARA:</h6>
+                                        <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarPublico('damas')">Damas</a></li>
+                                        <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarPublico('caballeros')">Caballeros</a></li>
+                                        <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarPublico('niños')">Niños</a></li>
+                                    </div>
+                                    <div class="col-7">
+                                        <h6 class="dropdown-header text-muted fw-bold ps-2 mb-2">CATEGORÍAS:</h6>
+                                        <div class="scroll-categorias" style="max-height:280px;overflow-y:auto;">
+                                            <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('todos')">Todo</a></li>
+                                            <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('accesorios')">Accesorios</a></li>
+                                            <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('arteypinceles')">Arte y Pinceles</a></li>
+                                            <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('baño')">Baño</a></li>
+                                            <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('bazzarytradicion')">Bazar y Tradición</a></li>
+                                            <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('camisetas')">Camisetas</a></li>
+                                            <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('conjuntos')">Conjuntos</a></li>
+                                            <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('mochilas')">Mochilas</a></li>
+                                            <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('peluches')">Peluches</a></li>
+                                            <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('remeras')">Remeras</a></li>
+                                            <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('shorts')">Shorts</a></li>
+                                            <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('termos')">Termos</a></li>
+                                            <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('vestidos')">Vestidos</a></li>
+                                            <li class="list-unstyled"><a class="dropdown-item rounded-2" href="#" onclick="filtrarMenu('zapateria')">Zapatería</a></li>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
 
-    categoriasAMostrar.forEach(function(cat) {
-        var card = '<div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-3">' +
-            '<div class="card-categoria" onclick="abrirCategoria(\'' + cat.id + '\',' + (filtroGenero ? '\'' + filtroGenero + '\'' : 'null') + ')">' +
-            '<div class="card-categoria-img-wrap"><img src="' + cat.imagen + '" alt="' + cat.nombre + '"></div>' +
-            '<div class="card-categoria-nombre">' + cat.nombre + '</div>' +
-            '</div></div>';
-        contenedor.innerHTML += card;
-    });
-}
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 
-function abrirCategoria(categoriaId, filtroGenero) {
-    filtroGenero = filtroGenero || null;
-    vistaActual = "productos";
-    var lista = productos.filter(function(p) { return p.categoria === categoriaId; });
-    if (filtroGenero) {
-        lista = lista.filter(function(p) { return p.genero === filtroGenero || p.genero === "unisex"; });
-    }
-    var cat = categorias.find(function(c) { return c.id === categoriaId; });
-    var nombreCat = cat ? cat.nombre : categoriaId;
-    mostrarProductosConBreadcrumb(lista, nombreCat, filtroGenero);
-}
+<main class="py-4">
+    <div class="container">
+        <div id="contenedor-productos" class="row g-3"></div>
+    </div>
+</main>
 
-function mostrarProductosConBreadcrumb(lista, nombreCategoria, filtroGenero) {
-    filtroGenero = filtroGenero || null;
-    productosMostrados = lista;
-    var contenedor = document.getElementById("contenedor-productos");
-    if (!contenedor) return;
-    contenedor.innerHTML = "";
+<!-- Modal galería -->
+<div id="modal-imagen" class="modal-galeria" onclick="cerrarModal()">
+    <span class="cerrar">&times;</span>
+    <img id="img-grande" class="modal-contenido" onclick="event.stopPropagation()">
+    <div id="modal-puntos-contenedor" class="modal-puntos" onclick="event.stopPropagation()"></div>
+    <div id="caption" class="text-center text-white mt-2 fw-bold"></div>
+</div>
 
-    var volver = filtroGenero ? "volverCategorias('" + filtroGenero + "')" : "volverCategorias()";
-    var badgeGenero = filtroGenero ? '<span class="badge bg-danger-subtle text-danger small ms-1">' + filtroGenero + '</span>' : '';
-    var breadcrumb = '<div class="col-12 mb-3"><div class="d-flex align-items-center gap-2">' +
-        '<button class="btn btn-sm btn-outline-danger rounded-pill" onclick="' + volver + '">' +
-        '<i class="bi bi-arrow-left"></i> Categorías</button>' +
-        '<span class="text-muted small">›</span>' +
-        '<span class="fw-bold small text-uppercase">' + nombreCategoria + '</span>' + badgeGenero +
-        '</div></div>';
-    contenedor.innerHTML = breadcrumb;
+<!-- Barra carrito (fija en pie) -->
+<div id="barra-carrito" class="barra-carrito">
+    <div class="container d-flex justify-content-between align-items-center w-100">
+        <div class="info-carrito" onclick="verResumen()" style="cursor:pointer; flex:1;">
+            <span id="cantidad-items" class="badge bg-danger rounded-circle pulse">0</span>
+            <span class="ms-2 fw-bold text-white small text-uppercase">Ver mi pedido</span>
+        </div>
+        <button type="button"
+            onclick="verResumen()"
+            class="btn btn-success fw-bold rounded-pill px-4 shadow-sm">
+                Finalizar Pedido
+                <i class="bi bi-whatsapp"></i>
+        </button>
+    </div>
+</div>
 
-    if (lista.length === 0) {
-        contenedor.innerHTML += '<div class="col-12 text-center py-5"><i class="bi bi-box-seam text-muted" style="font-size:3rem;"></i>' +
-            '<h5 class="fw-bold mt-3 text-muted">Sin productos en esta categoría</h5>' +
-            '<button class="btn btn-danger rounded-pill mt-3" onclick="volverCategorias()">Ver Categorías</button></div>';
-        return;
-    }
+<!-- Modal carrito -->
+<div class="modal fade" id="modalCarrito" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0">
+                <h5 class="modal-title fw-bold"><i class="bi bi-cart3 text-danger me-2"></i>Tu Pedido</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <input type="text" id="nombre-cliente" class="form-control rounded-pill border-0 bg-light" placeholder="Tu Nombre y Apellido">
+                </div>
+                <div class="d-flex gap-3 mb-3 px-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="metodoEntrega" id="opcionEnvio" value="Envío a domicilio" checked onchange="toggleCiudad(true)">
+                        <label class="form-check-label small fw-bold" for="opcionEnvio">🛵 Envío</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="metodoEntrega" id="opcionRetiro" value="Pasa a retirar" onchange="toggleCiudad(false)">
+                        <label class="form-check-label small fw-bold" for="opcionRetiro">🛍️ Retiro</label>
+                    </div>
+                </div>
+                <div class="mb-3" id="contenedor-ciudad">
+                    <input type="text" id="ciudad-cliente" class="form-control rounded-pill border-0 bg-light" placeholder="Ciudad para el envío">
+                </div>
+                <hr class="text-muted opacity-25">
+                <div id="lista-carrito-resumen"></div>
+                <hr class="text-muted">
+                <div class="d-flex justify-content-between align-items-center fw-bold fs-5 px-2">
+                    <span>Total:</span><span id="total-resumen" class="text-danger">0 Gs.</span>
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-light rounded-pill px-4 fw-bold text-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-success rounded-pill px-4 fw-bold shadow-sm" onclick="finalizarPedido()">
+                    WhatsApp <i class="bi bi-whatsapp"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
-    lista.forEach(function(p, i) {
-        var selectTalles = "";
-        if (p.talles && p.talles.length > 0) {
-            selectTalles = '<select id="talle-' + p.id + '" class="form-select form-select-sm mb-2 border-danger-subtle">' +
-                '<option value="" selected disabled>Elegir talle...</option>' +
-                p.talles.map(function(t) { return '<option value="' + t + '">' + t + '</option>'; }).join('') +
-                '</select>';
-        } else {
-            selectTalles = '<div style="height:38px;"></div>';
-        }
-        var badgeHTML = p.nota ? '<span class="badge-nota">' + p.nota + '</span>' : '<div style="height:22px;"></div>';
-        var card = '<div class="col"><div class="card shadow-sm">' +
-            '<img src="' + p.fotos[0] + '" class="card-img-top" onclick="abrirGaleria(' + i + ')" alt="' + p.nombre + '">' +
-            '<div class="card-body">' +
-            '<small class="text-muted fw-bold text-uppercase" style="font-size:0.65rem;">' + p.categoria + '</small>' +
-            badgeHTML +
-            '<h6 class="card-title">' + p.nombre + '</h6>' +
-            '<p class="precio-producto">' + Number(p.precio).toLocaleString('es-PY') + ' Gs.</p>' +
-            selectTalles +
-            '<button class="btn btn-sm w-100 fw-bold border-danger text-danger bg-white" onclick="agregarAlCarritoConTalle(' + p.id + ', this)">+ AGREGAR</button>' +
-            '</div></div></div>';
-        contenedor.innerHTML += card;
-    });
-}
+<!-- WhatsApp flotante -->
+<div class="contenedor-whatsapp">
+    <div class="burbuja-ayuda">¡Consultanos!</div>
+    <a href="https://wa.me/595981229871" class="btn-flotante shadow-lg" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+</div>
 
-function volverCategorias(filtroGenero) {
-    filtroGenero = filtroGenero || null;
-    document.getElementById("input-busqueda").value = "";
-    mostrarCategoriasInicio(filtroGenero);
-}
+<footer class="bg-white border-top py-5 mt-5 text-center text-md-start">
+    <div class="container">
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <h6 class="fw-bold text-uppercase mb-3">TESSA NOVEDADES</h6>
+                <p class="text-muted small">Tu tienda favorita de ropa y accesorios en Paraguay.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="text-muted small mb-2"><i class="bi bi-truck text-danger"></i> Envíos a todo el país</div>
+                <div class="text-muted small mb-1 fw-bold">PAGOS AL CONTADO</div>
+                <div class="text-muted small mb-2">Efectivo • QR • Transferencia</div>
+                <div class="text-muted fs-4">
+                    <i class="bi bi-bank" title="Transferencia"></i>
+                    <i class="bi bi-cash-stack" title="Efectivo"></i>
+                    <i class="bi bi-qr-code-scan" title="QR"></i>
+                </div>
+            </div>
+            <div class="col-md-4 text-md-end text-center">
+                <h6 class="fw-bold text-uppercase mb-3">Síguenos</h6>
+                <a href="https://www.facebook.com/profile.php?id=61586514245838" target="_blank" class="btn btn-outline-primary btn-sm rounded-circle me-2">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="https://www.instagram.com/tessanovedades/" target="_blank" class="btn btn-outline-danger btn-sm rounded-circle me-2">
+                    <i class="bi bi-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/" target="_blank" class="btn btn-outline-dark btn-sm rounded-circle">
+                    <i class="bi bi-tiktok"></i>
+                </a>
+            </div>
+        </div>
+        <hr class="text-muted opacity-25">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pt-2">
+            <div class="text-muted small">© 2026 TESSA NOVEDADES | Paraguay.</div>
+            <div class="firma-autor-discreta">Diseñado por <span class="nombre-firma">Mario Luna</span></div>
+        </div>
+    </div>
+</footer>
 
-// =======================================================
-// FILTROS (CORREGIDOS)
-// =======================================================
-function filtrarMenu(cat) {
-    document.querySelectorAll('.dropdown-menu').forEach(function(m) { m.classList.remove('show'); });
-    document.querySelectorAll('[data-bs-toggle="dropdown"]').forEach(function(b) { b.setAttribute('aria-expanded','false'); });
-    if (cat === "todos") {
-        mostrarCategoriasInicio();
-    } else {
-        abrirCategoria(cat);
-    }
-}
-
-function filtrarPublico(genero) {
-    document.querySelectorAll('.dropdown-menu').forEach(function(m) { m.classList.remove('show'); });
-    document.querySelectorAll('[data-bs-toggle="dropdown"]').forEach(function(b) { b.setAttribute('aria-expanded','false'); });
-    mostrarCategoriasInicio(genero);
-}
-
-// =======================================================
-// BÚSQUEDA (CORREGIDA)
-// =======================================================
-function buscarProducto() {
-    var texto = document.getElementById("input-busqueda").value.trim().toLowerCase();
-    var btnLupa = document.getElementById("boton-lupa-icono");
-
-    if (texto.length === 0) {
-        if (btnLupa) btnLupa.className = "bi bi-search";
-        mostrarCategoriasInicio();
-        return;
-    }
-    if (btnLupa) btnLupa.className = "bi bi-x-lg";
-
-    var resultados = productos.filter(function(p) {
-        return p.nombre.toLowerCase().indexOf(texto) !== -1 ||
-               p.categoria.toLowerCase().indexOf(texto) !== -1 ||
-               (p.nota && p.nota.toLowerCase().indexOf(texto) !== -1);
-    });
-
-    vistaActual = "productos";
-    mostrarProductosConBreadcrumb(resultados, 'Búsqueda: "' + texto + '"');
-}
-
-function limpiarBusqueda() {
-    var input = document.getElementById("input-busqueda");
-    var btnLupa = document.getElementById("boton-lupa-icono");
-    input.value = "";
-    if (btnLupa) btnLupa.className = "bi bi-search";
-    mostrarCategoriasInicio();
-}
-
-// =======================================================
-// CARRITO (CORREGIDO - fijo en pie de pantalla)
-// =======================================================
-function agregarAlCarritoConTalle(id, elementoBtn) {
-    var producto = productos.find(function(p) { return p.id === id; });
-    var select = document.getElementById("talle-" + id);
-    var talleElegido = "N/A";
-
-    if (select && select.options.length > 1) {
-        if (select.value === "") { alert("Por favor, seleccioná un talle."); return; }
-        talleElegido = select.value;
-    }
-
-    carrito.push(Object.assign({}, producto, { talleSeleccionado: talleElegido }));
-    localStorage.setItem('carrito_tessa', JSON.stringify(carrito));
-    actualizarBarraCarrito();
-
-    elementoBtn.innerText = "¡AÑADIDO!";
-    elementoBtn.classList.replace("text-danger", "text-success");
-    setTimeout(function() {
-        elementoBtn.innerText = "+ AGREGAR";
-        elementoBtn.classList.replace("text-success", "text-danger");
-    }, 1000);
-}
-
-function actualizarBarraCarrito() {
-    var barra = document.getElementById("barra-carrito");
-    var cantidad = document.getElementById("cantidad-items");
-    if (!barra || !cantidad) return;
-
-    if (carrito.length > 0) {
-        cantidad.innerText = carrito.length;
-        barra.style.cssText = "display:flex !important; position:fixed !important; bottom:0 !important; left:0 !important; width:100% !important; z-index:9990 !important;";
-        barra.onclick = verResumen;
-        setTimeout(function() { barra.classList.add("activa"); }, 10);
-    } else {
-        barra.classList.remove("activa");
-        setTimeout(function() { barra.style.display = "none"; }, 300);
-    }
-}
-
-function verResumen() {
-    var lista = document.getElementById("lista-carrito-resumen");
-    var total = document.getElementById("total-resumen");
-    if (!lista || !total) return;
-
-    var totalPrecio = 0;
-    lista.innerHTML = "";
-
-    if (carrito.length === 0) {
-        lista.innerHTML = '<p class="text-muted text-center py-3">Tu carrito está vacío.</p>';
-        total.innerText = "0 Gs.";
-    } else {
-        carrito.forEach(function(p, i) {
-            var talle = p.talleSeleccionado !== "N/A" ? ' <small class="text-muted">— Talle: ' + p.talleSeleccionado + '</small>' : "";
-            lista.innerHTML += '<div class="d-flex justify-content-between align-items-center mb-2 p-2 bg-light rounded">' +
-                '<div><span class="fw-bold small">' + p.nombre + '</span>' + talle + '</div>' +
-                '<div class="d-flex align-items-center gap-2">' +
-                '<span class="text-danger fw-bold small">' + Number(p.precio).toLocaleString('es-PY') + ' Gs.</span>' +
-                '<button class="btn btn-sm btn-outline-danger rounded-circle" style="width:26px;height:26px;padding:0;line-height:1;" onclick="quitarDelCarrito(' + i + ')">×</button>' +
-                '</div></div>';
-            totalPrecio += p.precio;
-        });
-        total.innerText = totalPrecio.toLocaleString('es-PY') + " Gs.";
-    }
-
-    var modalEl = document.getElementById("modalCarrito");
-    var modal = bootstrap.Modal.getOrCreate(modalEl);
-    modal.show();
-}
-
-function quitarDelCarrito(index) {
-    carrito.splice(index, 1);
-    localStorage.setItem('carrito_tessa', JSON.stringify(carrito));
-    actualizarBarraCarrito();
-    verResumen();
-}
-
-function finalizarPedido() {
-    if (carrito.length === 0) return;
-    var nombre = document.getElementById("nombre-cliente").value.trim();
-    if (!nombre) { alert("Tu nombre es necesario 😊"); return; }
-
-    var metodo = document.querySelector('input[name="metodoEntrega"]:checked');
-    var metodoTexto = metodo ? metodo.value : "Envío a domicilio";
-    var ciudad = document.getElementById("ciudad-cliente") ? document.getElementById("ciudad-cliente").value.trim() : "";
-
-    var total = 0;
-    var mensaje = "✨ *NUEVO PEDIDO TESSA* ✨\n\n👤 *Cliente:* " + nombre + "\n";
-    if (ciudad) mensaje += "🏙️ *Ciudad:* " + ciudad + "\n";
-    mensaje += "📦 *Entrega:* " + metodoTexto + "\n--------------------------\n";
-
-    carrito.forEach(function(p) {
-        var talle = p.talleSeleccionado !== "N/A" ? " [Talle: " + p.talleSeleccionado + "]" : "";
-        mensaje += "• " + p.nombre + talle + " - " + p.precio.toLocaleString('es-PY') + " Gs.\n";
-        total += p.precio;
-    });
-
-    mensaje += "\n🛍️ *TOTAL:* " + total.toLocaleString('es-PY') + " Gs.\n\n¡Espero tu confirmación!";
-    window.open("https://wa.me/595981229871?text=" + encodeURIComponent(mensaje), '_blank');
-}
-
-function toggleCiudad(mostrar) {
-    var c = document.getElementById("contenedor-ciudad");
-    if (c) c.style.display = mostrar ? "block" : "none";
-}
-
-// =======================================================
-// GALERÍA
-// =======================================================
-function abrirGaleria(indice) {
-    var producto = productosMostrados[indice];
-    if (!producto) return;
-    fotosActuales = producto.fotos;
-    indiceActual = 0;
-    document.getElementById("modal-imagen").style.display = "flex";
-    document.getElementById("caption").innerText = producto.nombre;
-    actualizarModal();
-}
-
-function actualizarModal() {
-    document.getElementById("img-grande").src = fotosActuales[indiceActual];
-    var puntos = document.getElementById("modal-puntos-contenedor");
-    puntos.innerHTML = fotosActuales.length > 1
-        ? fotosActuales.map(function(_, i) {
-            return '<div class="punto-nav ' + (i === indiceActual ? 'activo' : '') + '" onclick="indiceActual=' + i + ';actualizarModal()"></div>';
-          }).join('')
-        : "";
-}
-
-function cerrarModal() { document.getElementById("modal-imagen").style.display = "none"; }
-
-// =======================================================
-// NAVEGACIÓN
-// =======================================================
-function volverInicio() {
-    document.getElementById("input-busqueda").value = "";
-    mostrarCategoriasInicio();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-function mostrarAviso(mensaje) {
-    var aviso = document.createElement("div");
-    aviso.className = "aviso-tessa";
-    aviso.innerText = mensaje;
-    document.body.appendChild(aviso);
-    setTimeout(function() { aviso.classList.add("visible"); }, 10);
-    setTimeout(function() { aviso.classList.remove("visible"); setTimeout(function() { aviso.remove(); }, 300); }, 2500);
-}
-
-// =======================================================
-// HEADER SCROLL
-// =======================================================
-var headerEl = document.querySelector("header");
-window.addEventListener("scroll", function() {
-    if (window.pageYOffset <= 10) {
-        headerEl.classList.remove("header-oculto");
-    } else {
-        headerEl.classList.add("header-oculto");
-    }
-});
-document.addEventListener("touchstart", function() {
-    headerEl.classList.remove("header-oculto");
-}, { passive: true });
-
-// =======================================================
-// INICIO
-// =======================================================
-document.addEventListener("DOMContentLoaded", function() {
-    mostrarCategoriasInicio();
-    actualizarBarraCarrito();
-});
-
-// =======================================================
-// SEGURIDAD
-// =======================================================
-document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-document.onkeydown = function(e) {
-    if (e.key === "F12") return false;
-    if (e.ctrlKey && e.shiftKey && ["I","J","C","i","j","c"].indexOf(e.key) !== -1) return false;
-    if (e.ctrlKey && ["U","u","S","s"].indexOf(e.key) !== -1) return false;
-};
-setInterval(function() {
-    console.clear();
-    console.log("%c¡ALTO!", "color: red; font-size: 40px; font-weight: bold;");
-    console.log("%cEsta zona es solo para administración de TESSA.", "font-size: 18px;");
-}, 1000);
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
