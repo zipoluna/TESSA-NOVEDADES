@@ -263,12 +263,12 @@ header {
 }
 
 /* =======================================================
-   MENÚ DESPLEGABLE CATEGORÍAS
+   MENÚ DESPLEGABLE CATEGORÍAS (DOBLE COLUMNA)
    ======================================================= */
 
 .btn-menu-categorias {
-    height: 38px; /* Alineación perfecta con el buscador */
-    border-radius: 8px !important; /* Rectangular, no redondo */
+    height: 38px;
+    border-radius: 8px !important;
     padding: 0 15px;
     border: 1px solid #dee2e6 !important;
     background: white;
@@ -286,17 +286,51 @@ header {
     border-color: var(--tessa-rojo) !important;
 }
 
+/* El menú ahora es más ancho para las dos columnas */
 .menu-categorias {
-    border-radius: 12px;
-    padding: 10px;
-    min-width: 220px;
+    border-radius: 15px !important;
+    padding: 15px !important;
+    min-width: 380px !important; /* Espacio para Género + Categoría */
+    border: none !important;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important;
 }
 
 .menu-categorias .dropdown-item {
     border-radius: 8px;
-    padding: 10px 14px;
+    padding: 8px 12px;
     font-weight: 600;
+    font-size: 0.85rem;
     transition: all 0.2s ease;
+    color: var(--tessa-gris-oscuro);
+}
+
+.menu-categorias .dropdown-item:hover {
+    background: var(--tessa-rojo);
+    color: white !important;
+}
+
+/* Contenedor del scroll para las categorías */
+.scroll-categorias {
+    max-height: 280px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* Scrollbar minimalista para que no sea feo */
+.scroll-categorias::-webkit-scrollbar {
+    width: 4px;
+}
+.scroll-categorias::-webkit-scrollbar-thumb {
+    background: #eee;
+    border-radius: 10px;
+}
+
+/* AJUSTE MÓVIL: En celulares se apilan o se ajustan */
+@media (max-width: 576px) {
+    .menu-categorias {
+        min-width: 320px !important;
+        margin-right: 5px;
+    }
 }
 
 
