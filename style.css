@@ -16,12 +16,12 @@
 body { 
     font-family: 'Segoe UI', Roboto, sans-serif; 
     background-color: var(--tessa-fondo); 
-    padding-bottom: 80px;
-    padding-top: 10px; 
+    padding-bottom: 100px; /* Espacio para la barra de carrito */
+    padding-top: 70px; /* Espacio para el header fijo */
 }
 
 @media screen and (max-width: 768px) {
-    body { padding-top: 0px; }
+    body { padding-top: 60px; }
 }
 
 img {
@@ -42,13 +42,11 @@ header {
     z-index: 2000;
     background: white;
     transition: transform 0.35s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-.header-oculto { transform: translateY(-100%); }
-.header-scroll { box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
-
 .logo-principal {
-    height: 45px; 
+    height: 40px; 
     width: auto;
     object-fit: contain;
     cursor: pointer;
@@ -68,370 +66,157 @@ header {
     background-color: transparent !important;
 }
 
-#input-busqueda:focus {
-    box-shadow: none !important;
-    outline: none;
+/* =======================================================
+   SISTEMA DE TARJETAS (CORRECCIÓN DE ALINEACIÓN)
+   ======================================================= */
+
+/* Forzar que todas las tarjetas tengan la misma altura */
+.card {
+    height: 100%;
+    border: none !important;
+    border-radius: 15px !important;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Forzar que todas las imágenes midan lo mismo */
+.card-img-top {
+    aspect-ratio: 1 / 1; /* Cuadrado perfecto o usa 3 / 4 para vertical */
+    object-fit: cover;
+    background-color: #f8f9fa;
+}
+
+/* Cuerpo de la tarjeta flexible */
+.card-body {
+    padding: 12px !important;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Empuja el botón al fondo */
+}
+
+/* Título con altura fija (Máximo 2 líneas) */
+.card-title {
+    font-size: 0.9rem !important;
+    font-weight: 600;
+    margin-bottom: 8px;
+    height: 2.6rem; /* Altura fija para 2 líneas */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    color: var(--tessa-gris-oscuro);
+}
+
+/* Precio siempre en el mismo lugar */
+.precio-producto {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--tessa-rojo);
+    margin-bottom: 10px;
+    margin-top: auto; /* Empuja el precio arriba del botón */
+}
+
+/* Estilo para etiquetas de "Limitado", "Solo Negro", etc. */
+.badge-nota {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: #fff3cd; /* Amarillo suave */
+    color: #856404;
+    margin-bottom: 8px;
+    display: inline-block;
+    align-self: flex-start;
 }
 
 /* =======================================================
-   NUEVO: WHATSAPP FLOTANTE CON BURBUJA (CIRUGÍA FINAL)
+   WHATSAPP FLOTANTE
    ======================================================= */
-
-/* Contenedor principal que agrupa burbuja e icono */
 .contenedor-whatsapp {
     position: fixed;
-    bottom: 80px;
-    right: 20px;
+    bottom: 90px;
+    right: 15px;
     display: flex;
     align-items: center;
-    z-index: 9999 !important; /* Asegura que esté por encima de todo */
+    z-index: 5000;
 }
 
-/* Estilo de la burbuja de texto */
 .burbuja-ayuda {
     background-color: white;
-    color: var(--tessa-gris-oscuro) !important;
+    color: var(--tessa-gris-oscuro);
     padding: 8px 15px;
     border-radius: 18px 18px 0 18px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
-    margin-right: 12px;
+    margin-right: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
     border: 1px solid #eee;
-    white-space: nowrap;
     animation: flotarBurbuja 3s infinite ease-in-out;
 }
 
-/* Estilo del botón (ajustado para vivir dentro del contenedor) */
 .btn-flotante {
-    position: relative !important;
-    bottom: 0 !important;
-    right: 0 !important;
     background-color: var(--verde-whatsapp);
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     transition: transform 0.3s ease;
+    text-decoration: none;
 }
 
-.btn-flotante img {
-    width: 35px;
-    height: 35px;
-}
+.btn-flotante:hover { transform: scale(1.1); color: white; }
 
-.btn-flotante:hover {
-    transform: scale(1.1);
-}
-
-/* Animación de levitación */
 @keyframes flotarBurbuja {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-6px); }
 }
 
-/* Ajuste para móviles muy pequeños */
-@media screen and (max-width: 400px) {
-    .burbuja-ayuda {
-        font-size: 0.75rem;
-        padding: 6px 12px;
-    }
-}
 /* =======================================================
-   MODAL GALERÍA
+   MODAL GALERÍA Y CARRITO
    ======================================================= */
-
-.modal-galeria { 
-    display: none; 
-    position: fixed; 
-    z-index: 9999;
-    top: 0; left: 0; 
-    width: 100%; height: 100%; 
-    background: rgba(0,0,0,0.95); 
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-/* Oscurecemos y desenfocamos TODO lo que está detrás del carrito */
-.modal-backdrop.show {
-    opacity: 0.9 !important; /* Casi negro */
-    backdrop-filter: blur(8px); /* Efecto de vidrio esmerilado al fondo */
-}
-
-/* Ajuste para que el modal no se pegue a los bordes y se vea moderno */
-.modal-dialog {
-    margin: 1rem auto;
-    display: flex;
-    align-items: center;
-    min-height: calc(100% - 2rem);
-}
-
 .modal-content {
-    border-radius: 25px !important;
+    border-radius: 20px !important;
     border: none !important;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4) !important;
 }
 
-/* Aseguramos que el cuerpo del modal tenga scroll si el pedido es largo */
-.modal-body {
-    max-height: 70vh;
-    overflow-y: auto;
-    padding: 20px;
+.firma-autor-discreta {
+    font-size: 0.85rem;
+    color: var(--tessa-gris-suave);
 }
 
-.modal-contenido { 
-    max-width: 95%; 
-    max-height: 80vh; 
-    object-fit: contain; 
-    border-radius: 20px;
-    border: none;
-}
-
-.modal-puntos {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 15px;
-    pointer-events: auto; /* Importante para que deje hacer clic */
-}
-
-.punto-nav {
-    width: 12px;
-    height: 12px;
-    background-color: rgba(255, 255, 255, 0.3);
-    border: 1px solid white;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.punto-nav.activo {
-    background-color: var(--tessa-rojo);
-    transform: scale(1.3);
-}
-
-.cerrar { 
-    position: absolute; 
-    top: 15px; right: 25px; 
-    color: white; font-size: 40px; 
-    cursor: pointer;
+.nombre-firma {
+    font-family: 'Dancing Script', cursive;
+    color: var(--tessa-rojo);
+    font-weight: bold;
+    font-size: 1.1rem;
 }
 
 /* =======================================================
-   CARRITO Y BARRA
+   CARRITO BARRA
    ======================================================= */
 .barra-carrito {
-    cursor: pointer;
     position: fixed;
     bottom: 0; left: 0; width: 100%;
     background: white;
     border-top: 2px solid var(--tessa-rojo);
-    padding: 12px 0;
+    padding: 10px 0;
     z-index: 4000;
-    transform: translateY(100%);
-    transition: transform 0.4s ease;
-}
-
-.barra-carrito.activa { transform: translateY(0); }
-
-#cantidad-items {
-    font-size: 0.8rem;
-    padding: 0.4em 0.6em;
-}
-
-.btn-flotante {
-    position: fixed;
-    bottom: 70px; 
-    right: 20px;
-    background-color: var(--verde-whatsapp);
-    color: white;
-    border: none;
-    
-    width: 60px; 
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 5000;
-    transition: transform 0.3s ease;
-    padding: 0;
-}
-
-.btn-flotante img { 
-    width: 35px; 
-    height: 35px;
-    object-fit: contain;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
 }
 
 /* =======================================================
-   RESPONSIVE
+   FONDO ANIMADO
    ======================================================= */
-
-@media (max-width: 768px) {
-    .contenedor-productos { 
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Crea 2 columnas iguales */
-    gap: 15px; /* Espacio entre las columnas */
-    padding: 10px;
-    }
-    /* 1. Eliminamos el margen superior de toda la página */
-    body {
-        padding-top: 0 !important;
-        margin-top: 0 !important;
-    }
-
-    /* 2. Forzamos al header a pegarse al techo */
-    header {
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-        top: 0 !important;
-    }
-
-    /* 3. Limpiamos el contenedor interno */
-    header .container {
-        padding-top: 2px !important; /* Espacio mínimo para que no choque el borde */
-        padding-bottom: 5px !important;
-    }
-
-    /* 4. Quitamos espacios de la fila (row) */
-    header .row {
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    /* 5. Ajuste del Logo para que suba */
-    .logo-principal {
-        max-height: 30px !important; /* Logo más pequeño en móvil ayuda a subir todo */
-        display: block;
-        margin-top: 5px !important;
-    }
-
-    /* 6. Subimos el buscador */
-    .buscador-tessa {
-        margin-top: 5px !important;
-        margin-bottom: 5px !important;
-    }
-
-    /* 7. Pegamos los filtros */
-    #filtros {
-        margin-top: 0 !important;
-        padding-top: 2px !important;
-    }
-}
-
-/* =======================================================
-   MENÚ DESPLEGABLE CATEGORÍAS (DOBLE COLUMNA)
-   ======================================================= */
-
-.btn-menu-categorias {
-    height: 38px;
-    border-radius: 8px !important;
-    padding: 0 15px;
-    border: 1px solid #dee2e6 !important;
-    background: white;
-    color: var(--tessa-gris-oscuro);
-    transition: all 0.25s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-}
-
-.btn-menu-categorias:hover {
-    background: var(--tessa-rojo);
-    color: white;
-    border-color: var(--tessa-rojo) !important;
-}
-
-/* El menú ahora es más ancho para las dos columnas */
-.menu-categorias {
-    border-radius: 15px !important;
-    padding: 10px !important;
-    min-width: 380px !important; /* Espacio para Género + Categoría */
-    border: none !important;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important;
-}
-
-.menu-categorias .dropdown-item {
-    border-radius: 8px;
-    padding: 8px 12px;
-    font-weight: 600;
-    font-size: 0.85rem;
-    transition: all 0.2s ease;
-    color: var(--tessa-gris-oscuro);
-}
-
-.menu-categorias .dropdown-item:hover {
-    background: var(--tessa-rojo);
-    color: white !important;
-}
-
-/* Contenedor del scroll para las categorías */
-.scroll-categorias {
-    max-height: 280px;
-    overflow-y: auto;
-    padding-right: 5px;
-}
-
-/* Scrollbar minimalista para que no sea feo */
-.scroll-categorias::-webkit-scrollbar {
-    width: 4px;
-}
-.scroll-categorias::-webkit-scrollbar-thumb {
-    background: #eee;
-    border-radius: 10px;
-}
-
-/* AJUSTE MÓVIL: En celulares se apilan o se ajustan */
-@media (max-width: 576px) {
-    .menu-categorias {
-        min-width: 320px !important;
-        margin-right: 5px;
-    }
-}
-
-
-/* =======================================================
-   CATEGORÍAS HOME
-   ======================================================= */
-
-.categoria-card {
-    cursor: pointer;
-    border-radius: 22px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    background: white;
-}
-
-.categoria-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 14px 30px rgba(0,0,0,0.12) !important;
-}
-
-.categoria-img {
-    height: 260px;
-    object-fit: cover;
-}
-
-.categoria-titulo {
-    font-size: 1rem;
-    text-transform: uppercase;
-    color: var(--tessa-gris-oscuro);
-    letter-spacing: 1px;
-}
-
-/* =======================================================
-   FONDO ANIMADO PREMIUM
-   ======================================================= */
-
 .fondo-animado {
     position: fixed;
     inset: 0;
@@ -443,79 +228,27 @@ header {
 .fondo-animado span {
     position: absolute;
     display: block;
-    width: 60vw;
-    height: 60vw;
-    background: radial-gradient(
-        circle,
-        rgba(230,57,70,0.10) 0%,
-        rgba(230,57,70,0.04) 40%,
-        transparent 70%
-    );
-
-    border-radius: 50%;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, rgba(230,57,70,0.08) 0%, transparent 70%);
     filter: blur(50px);
-    animation: moverOndas 18s infinite alternate ease-in-out;
-}
-
-.fondo-animado span:nth-child(1) {
-    top: -10%;
-    left: -10%;
-}
-
-.fondo-animado span:nth-child(2) {
-    top: 40%;
-    right: -15%;
-    animation-duration: 22s;
-}
-
-.fondo-animado span:nth-child(3) {
-    bottom: -20%;
-    left: 20%;
-    animation-duration: 26s;
+    animation: moverOndas 20s infinite alternate ease-in-out;
 }
 
 @keyframes moverOndas {
-
-    0% {
-        transform: translate(0px, 0px) scale(1);
-    }
-
-    100% {
-        transform: translate(40px, -40px) scale(1.15);
-    }
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, -30px) scale(1.1); }
 }
 
-
-/* --- NUEVO: BURBUJA DE AYUDA WHATSAPP --- */
-.contenedor-whatsapp {
-    position: fixed;
-    bottom: 80px; /* Ajustado para que no tape otros elementos */
-    right: 20px;
-    display: flex;
-    align-items: center;
-    z-index: 5000;
+/* =======================================================
+   AJUSTES MENÚ CATEGORÍAS
+   ======================================================= */
+.menu-categorias {
+    min-width: 350px !important;
+    border-radius: 15px !important;
+    border: none !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
 }
 
-.burbuja-ayuda {
-    background-color: white;
-    color: var(--tessa-gris-oscuro);
-    padding: 7px 14px;
-    border-radius: 15px 15px 0 15px; /* Estilo gota de chat moderno */
-    font-size: 0.8rem;
-    font-weight: 700;
-    margin-right: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    border: 1px solid #eee;
-    white-space: nowrap;
-    animation: aparecerBurbuja 0.5s ease-out forwards, flotarBurbuja 3s infinite ease-in-out;
-}
-
-@keyframes aparecerBurbuja {
-    from { opacity: 0; transform: translateX(20px); }
-    to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes flotarBurbuja {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-}
+.scroll-categorias::-webkit-scrollbar { width: 4px; }
+.scroll-categorias::-webkit-scrollbar-thumb { background: #eee; border-radius: 10px; }
