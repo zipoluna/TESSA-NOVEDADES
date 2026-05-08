@@ -110,17 +110,26 @@ function agregarAlCarritoConTalle(id, elementoBtn) {
 function actualizarBarraCarrito() {
     const barra = document.getElementById("barra-carrito");
     const cantidad = document.getElementById("cantidad-items");
+    
+    // Si los elementos no existen en el HTML, salimos para no dar error
     if (!barra || !cantidad) return;
 
     if (carrito.length > 0) {
         cantidad.innerText = carrito.length;
         barra.style.display = "flex";
+        
+        // REPARACIÓN CLAVE: Aseguramos que el clic abra el carrito
+        barra.onclick = verResumen; 
+        
         setTimeout(() => barra.classList.add("activa"), 10);
     } else {
         barra.classList.remove("activa");
-        setTimeout(() => barra.style.display = "none", 300);
+        setTimeout(() => {
+            barra.style.display = "none";
+        }, 300);
     }
 }
+
 
 // =======================================================
 // FINALIZAR PEDIDO (WHATSAPP)
