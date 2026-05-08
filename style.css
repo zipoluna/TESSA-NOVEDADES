@@ -314,5 +314,40 @@ header {
     }
 }
 
+/* =======================================================
+   MENÚ DESPLEGABLE CATEGORÍAS
+   ======================================================= */
 
+.btn-menu-categorias {
+    width: 45px;
+    height: 45px;
+    border: none;
+    background: white;
+    color: var(--tessa-gris-oscuro);
+    transition: all 0.25s ease;
+}
+
+.btn-menu-categorias:hover {
+    background: var(--tessa-rojo);
+    color: white;
+    transform: scale(1.05);
+}
+
+.menu-categorias {
+    border-radius: 18px;
+    padding: 10px;
+    min-width: 220px;
+}
+
+.menu-categorias .dropdown-item {
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.menu-categorias .dropdown-item:hover {
+    background: var(--tessa-rojo);
+    color: white;
+}
 
