@@ -292,6 +292,7 @@ function finalizarPedido() {
     });
 
     mensaje += `🛍️ *TOTAL:* ${total.toLocaleString('es-PY')} Gs.\n\n`;
+    mensaje += "📍 En breve te compartiré mi ubicación exacta para cotizar el envío.\n\n";
     mensaje += "Me gustaría confirmar disponibilidad. ¡Gracias! ✨";
 
     setTimeout(() => {
