@@ -319,8 +319,9 @@ header {
    ======================================================= */
 
 .btn-menu-categorias {
-    width: 45px;
     height: 45px;
+    border-radius: 50px;
+    padding: 0 16px
     border: none;
     background: white;
     color: var(--tessa-gris-oscuro);
