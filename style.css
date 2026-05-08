@@ -11,17 +11,14 @@
 }
 
 /* =======================================================
-   CONFIGURACIÓN BASE Y SEGURIDAD
+   BASE
    ======================================================= */
-body { 
-    font-family: 'Segoe UI', Roboto, sans-serif; 
-    background-color: var(--tessa-fondo); 
-    padding-bottom: 80px;
-    padding-top: 10px; 
-}
-
-@media screen and (max-width: 768px) {
-    body { padding-top: 0px; }
+body {
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--tessa-fondo);
+    padding-bottom: 100px;
+    margin: 0;
+    overflow-x: hidden;
 }
 
 img {
@@ -33,10 +30,10 @@ img {
 }
 
 /* =======================================================
-   HEADER Y BUSCADOR
+   HEADER
    ======================================================= */
 header {
-    position: fixed;
+    position: sticky;
     top: 0;
     width: 100%;
     z-index: 2000;
@@ -48,15 +45,15 @@ header {
 .header-scroll { box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
 
 .logo-principal {
-    height: 45px; 
+    height: 45px;
     width: auto;
     object-fit: contain;
     cursor: pointer;
 }
 
-.input-group.buscador-tessa { 
+.input-group.buscador-tessa {
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    border-radius: 8px !important; 
+    border-radius: 8px !important;
     overflow: hidden;
     background-color: #f8f9fa;
     border: 1px solid #dee2e6;
@@ -74,23 +71,218 @@ header {
 }
 
 /* =======================================================
-   NUEVO: WHATSAPP FLOTANTE CON BURBUJA (CIRUGÍA FINAL)
+   TARJETAS DE CATEGORÍA (NUEVO)
    ======================================================= */
+.card-categoria {
+    cursor: pointer;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+}
 
-/* Contenedor principal que agrupa burbuja e icono */
+.card-categoria:hover,
+.card-categoria:active {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(230,57,70,0.18);
+}
+
+.card-categoria-img-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+.card-categoria-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.card-categoria:hover .card-categoria-img-wrap img {
+    transform: scale(1.05);
+}
+
+.card-categoria-nombre {
+    padding: 10px 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--tessa-gris-oscuro);
+    background: white;
+}
+
+@media (max-width: 576px) {
+    .card-categoria-nombre {
+        font-size: 0.72rem;
+        padding: 8px 4px;
+    }
+}
+
+/* =======================================================
+   CARDS DE PRODUCTOS
+   ======================================================= */
+.card {
+    border: none;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1) !important; }
+
+.card-img-top {
+    height: 220px;
+    object-fit: cover;
+    cursor: zoom-in;
+}
+
+.card-body { padding: 12px; }
+.card-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
+.precio-producto { color: var(--tessa-rojo); font-weight: 800; font-size: 1rem; margin-bottom: 8px; }
+
+.badge-nota {
+    display: inline-block;
+    background: #fff3cd;
+    color: #856404;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-bottom: 4px;
+    border: 1px solid #ffc107;
+}
+
+/* =======================================================
+   BARRA CARRITO (SIEMPRE FIJA EN EL PIE)
+   ======================================================= */
+.barra-carrito {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    padding: 12px 16px;
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    min-height: 64px;
+
+    transform: translateY(120%);
+    opacity: 0;
+    pointer-events: none;
+
+    transition:
+        transform 0.35s ease,
+        opacity 0.35s ease;
+}
+
+.barra-carrito.activa {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+.info-carrito {
+    display: flex;
+    align-items: center;
+}
+
+.pulse {
+    animation: pulseAnim 1.5s infinite;
+}
+
+@keyframes pulseAnim {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* =======================================================
+   MODAL GALERÍA
+   ======================================================= */
+.modal-galeria {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.92);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.modal-contenido {
+    max-width: 90vw;
+    max-height: 75vh;
+    border-radius: 12px;
+    object-fit: contain;
+}
+
+.cerrar {
+    position: absolute;
+    top: 18px; right: 24px;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 10001;
+    line-height: 1;
+}
+
+.modal-puntos {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.punto-nav {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.punto-nav.activo { background: white; }
+
+/* =======================================================
+   BOTÓN MENÚ CATEGORÍAS
+   ======================================================= */
+.btn-menu-categorias {
+    background: white;
+    border: 1.5px solid #dee2e6;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.btn-menu-categorias:hover { border-color: var(--tessa-rojo); color: var(--tessa-rojo); }
+
+.menu-categorias { border-radius: 14px; min-width: 320px; }
+
+/* =======================================================
+   WHATSAPP FLOTANTE
+   ======================================================= */
 .contenedor-whatsapp {
     position: fixed;
-    bottom: 80px;
+    bottom: 95px;
     right: 20px;
     display: flex;
     align-items: center;
-    z-index: 9999 !important; /* Asegura que esté por encima de todo */
+    z-index: 9999 !important;
 }
 
-/* Estilo de la burbuja de texto */
 .burbuja-ayuda {
     background-color: white;
-    color: var(--tessa-gris-oscuro) !important;
+    color: var(--tessa-gris-oscuro);
     padding: 8px 15px;
     border-radius: 18px 18px 0 18px;
     font-size: 0.85rem;
@@ -102,7 +294,6 @@ header {
     animation: flotarBurbuja 3s infinite ease-in-out;
 }
 
-/* Estilo del botón (ajustado para vivir dentro del contenedor) */
 .btn-flotante {
     position: relative !important;
     bottom: 0 !important;
@@ -118,25 +309,91 @@ header {
     transition: transform 0.3s ease;
 }
 
-.btn-flotante img {
-    width: 35px;
-    height: 35px;
-}
+.btn-flotante img { width: 35px; height: 35px; }
+.btn-flotante:hover { transform: scale(1.1); }
 
-.btn-flotante:hover {
-    transform: scale(1.1);
-}
-
-/* Animación de levitación */
 @keyframes flotarBurbuja {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-6px); }
 }
 
-/* Ajuste para móviles muy pequeños */
-@media screen and (max-width: 400px) {
-    .burbuja-ayuda {
-        font-size: 0.75rem;
-        padding: 6px 12px;
-    }
+/* =======================================================
+   AVISO TOAST
+   ======================================================= */
+.aviso-tessa {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--tessa-gris-oscuro);
+    color: white;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 99999;
+    pointer-events: none;
+}
+
+.aviso-tessa.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* =======================================================
+   FONDO ANIMADO
+   ======================================================= */
+.fondo-animado {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.fondo-animado span {
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    animation: animarFondo 20s linear infinite;
+    opacity: 0.03;
+    background: var(--tessa-rojo);
+}
+
+.fondo-animado span:nth-child(1) { width: 400px; height: 400px; left: -100px; top: -100px; animation-delay: 0s; }
+.fondo-animado span:nth-child(2) { width: 300px; height: 300px; right: -80px; top: 40%; animation-delay: -7s; }
+.fondo-animado span:nth-child(3) { width: 250px; height: 250px; left: 30%; bottom: -80px; animation-delay: -14s; }
+
+@keyframes animarFondo {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(180deg); }
+}
+
+/* =======================================================
+   FIRMA AUTOR
+   ======================================================= */
+.firma-autor-discreta {
+    font-size: 0.72rem;
+    color: #adb5bd;
+    margin-top: 6px;
+}
+
+.nombre-firma {
+    font-weight: 600;
+    color: #adb5bd;
+}
+
+/* =======================================================
+   MÓVIL: ajustes extra
+   ======================================================= */
+@media (max-width: 400px) {
+    .burbuja-ayuda { font-size: 0.75rem; padding: 6px 12px; }
+    .card-img-top { height: 180px; }
+}
+
+.modal {
+    z-index: 10050 !important;
 }
