@@ -419,3 +419,38 @@ header {
         transform: translate(40px, -40px) scale(1.15);
     }
 }
+
+
+/* --- NUEVO: BURBUJA DE AYUDA WHATSAPP --- */
+.contenedor-whatsapp {
+    position: fixed;
+    bottom: 80px; /* Ajustado para que no tape otros elementos */
+    right: 20px;
+    display: flex;
+    align-items: center;
+    z-index: 5000;
+}
+
+.burbuja-ayuda {
+    background-color: white;
+    color: var(--tessa-gris-oscuro);
+    padding: 7px 14px;
+    border-radius: 15px 15px 0 15px; /* Estilo gota de chat moderno */
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-right: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+    white-space: nowrap;
+    animation: aparecerBurbuja 0.5s ease-out forwards, flotarBurbuja 3s infinite ease-in-out;
+}
+
+@keyframes aparecerBurbuja {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes flotarBurbuja {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
