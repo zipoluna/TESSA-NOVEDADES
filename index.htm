@@ -17,37 +17,54 @@
                     <img src="src/logo.png" alt="TESSA" class="logo-principal" onclick="volverInicio()">
                 </div>
                 <div class="col-7 col-md-9 text-center">
-                    <div class="input-group buscador-tessa">
-                        <span class="input-group-text bg-light border-0 rounded-start-pill text-muted" 
-                              onclick="limpiarBusqueda()" style="cursor: pointer;">
-                            <i id="boton-lupa-icono" class="bi bi-search"></i>
-                        </span>
+    <div class="d-flex align-items-center gap-2">
 
-                        <input type="search" id="input-busqueda" 
-                               class="form-control border-0 bg-light py-1 rounded-end-pill" 
-                               placeholder="¿Qué buscas hoy?" 
-                               oninput="buscarProducto()"
-                               onsearch="buscarProducto()">
-                    </div>
+        <!-- BOTÓN MENÚ -->
+        <div class="dropdown">
+            <button class="btn btn-light rounded-circle shadow-sm btn-menu-categorias"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                <i class="bi bi-list fs-5"></i>
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end shadow border-0 menu-categorias">
+                <li><a class="dropdown-item" href="#" onclick="filtrarMenu('todos')">Todo</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filtrarMenu('accesorios')">Accesorios</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filtrarMenu('arteypinceles')">Arte</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filtrarMenu('baño')">Baño</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filtrarMenu('bazzarytradicion')">Tradición</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filtrarMenu('camisetas')">Camisetas</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filtrarMenu('conjuntos')">Conjuntos</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filtrarMenu('mochilas')">Mochilas</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filtrarMenu('peluches')">Peluches</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filtrarMenu('remeras')">Remeras</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filtrarMenu('shorts')">Shorts</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filtrarMenu('termos')">Termos</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filtrarMenu('vestidos')">Vestidos</a></li>
+                <li><a class="dropdown-item" href="#" onclick="filtrarMenu('zapateria')">Zapatería</a></li>
+            </ul>
+        </div>
+
+        <!-- BUSCADOR -->
+        <div class="input-group buscador-tessa flex-grow-1">
+            <span class="input-group-text bg-light border-0 rounded-start-pill text-muted" 
+                  onclick="limpiarBusqueda()" style="cursor: pointer;">
+                <i id="boton-lupa-icono" class="bi bi-search"></i>
+            </span>
+
+            <input type="search" id="input-busqueda" 
+                   class="form-control border-0 bg-light py-1 rounded-end-pill" 
+                   placeholder="¿Qué buscas hoy?" 
+                   oninput="buscarProducto()"
+                   onsearch="buscarProducto()">
+        </div>
+    </div>
                 </div>
             </div>
 
-            <nav id="filtros" class="no-scrollbar mt-1">
-                <button class="btn btn-sm btn-danger active" onclick="filtrar(event, 'todos')">Todo</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'accesorios')">Accesorios</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'arteypinceles')">Arte</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'baño')">Baño</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'bazzarytradicion')">Tradición</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'camisetas')">Camisetas</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'conjuntos')">Conjuntos</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'mochilas')">Mochilas</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'peluches')">Peluches</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'remeras')">Remeras</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'shorts')">Shorts</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'termos')">Termos</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'vestidos')">Vestidos</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="filtrar(event, 'zapateria')">Zapatería</button>
-            </nav>
+
+            
         </div>
     </header>
 
