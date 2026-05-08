@@ -300,6 +300,15 @@ function actualizarModal() {
 
 function cerrarModal() { document.getElementById("modal-imagen").style.display = "none"; }
 
+function filtrarMenu(cat) {
+    const filtrados = cat === 'todos'
+        ? productos
+        : productos.filter(p => p.categoria === cat);
+
+    mostrarProductos(filtrados);
+}
+
+
 function filtrar(e, cat) {
     const filtrados = cat === 'todos'
         ? productos
