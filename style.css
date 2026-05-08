@@ -289,7 +289,7 @@ header {
 /* El menú ahora es más ancho para las dos columnas */
 .menu-categorias {
     border-radius: 15px !important;
-    padding: 15px !important;
+    padding: 10px !important;
     min-width: 380px !important; /* Espacio para Género + Categoría */
     border: none !important;
     box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important;
