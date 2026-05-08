@@ -337,7 +337,7 @@ function buscarProducto() {
         if(btnLupa) btnLupa.className = "bi bi-x-lg text-danger";
     } else {
         if(btnLupa) btnLupa.className = "bi bi-search";
-        mostrarProductos(productos);
+        volverProductosInicio();
         return;
     }
 
@@ -394,9 +394,22 @@ setInterval(() => {
     console.log("%cEsta zona es solo para administración de TESSA. El acceso no autorizado está bloqueado.", "font-size: 18px;");
 }, 1000);
 
-window.onload = () => { 
-    const productosOrdenados = [...productos].sort((a, b) => a.precio - b.precio);
-    mostrarProductos(productosOrdenados); 
+window.onload = () => {
+
+    const categoriasMostradas = new Set();
+
+    const productosInicio = productos.filter(producto => {
+
+        if (!categoriasMostradas.has(producto.categoria)) {
+            categoriasMostradas.add(producto.categoria);
+            return true;
+        }
+
+        return false;
+    });
+
+    mostrarProductos(productosInicio);
+
     actualizarBarraCarrito();
 };
 
