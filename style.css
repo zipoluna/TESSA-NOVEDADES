@@ -352,3 +352,31 @@ header {
     color: white;
 }
 
+/* =======================================================
+   CATEGORÍAS HOME
+   ======================================================= */
+
+.categoria-card {
+    cursor: pointer;
+    border-radius: 22px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.categoria-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.12) !important;
+}
+
+.categoria-img {
+    height: 260px;
+    object-fit: cover;
+}
+
+.categoria-titulo {
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--tessa-gris-oscuro);
+    letter-spacing: 1px;
+}
