@@ -398,3 +398,18 @@ header {
 .modal {
     z-index: 10050 !important;
 }
+
+.badge-nota-flotante {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #fff3cd;
+    color: #856404;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid #ffc107;
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
