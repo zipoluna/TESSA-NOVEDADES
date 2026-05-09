@@ -174,13 +174,15 @@ function mostrarProductosConBreadcrumb(lista, nombreCategoria, filtroGenero) {
         } else {
             selectTalles = '<div style="height:38px;"></div>';
         }
-        var badgeHTML = p.nota ? '<span class="badge-nota">' + p.nota + '</span>' : '<div style="height:22px;"></div>';
+        var badgeHTML = p.nota ? '<span class="badge-nota-flotante">' + p.nota + '</span>' : '';
         contenedor.innerHTML +=
             '<div class="col-6 col-md-4 col-lg-3"><div class="card shadow-sm h-100">' +
+            '<div style="position:relative;">' +
             '<img src="' + p.fotos[0] + '" class="card-img-top" onclick="abrirGaleria(' + i + ')" alt="' + p.nombre + '">' +
+            badgeHTML +
+            '</div>' +
             '<div class="card-body">' +
             '<small class="text-muted fw-bold text-uppercase" style="font-size:0.65rem;">' + p.categoria + '</small>' +
-            badgeHTML +
             '<h6 class="card-title">' + p.nombre + '</h6>' +
             '<p class="precio-producto">' + Number(p.precio).toLocaleString('es-PY') + ' Gs.</p>' +
             selectTalles +
