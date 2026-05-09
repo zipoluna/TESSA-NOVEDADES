@@ -323,6 +323,17 @@ function verResumen() {
     }
 }
 
+function vaciarCarrito() {
+    carrito = [];
+    localStorage.removeItem('carrito_tessa');
+    actualizarBarraCarrito();
+    var modalEl = document.getElementById("modalCarrito");
+    var inst = bootstrap.Modal.getInstance(modalEl);
+    if (inst) inst.hide();
+    mostrarToast("Carrito cancelado", "danger");
+}
+
+
 function quitarDelCarrito(index) {
     carrito.splice(index, 1);
     localStorage.setItem('carrito_tessa', JSON.stringify(carrito));
