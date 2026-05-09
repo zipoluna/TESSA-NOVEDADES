@@ -137,6 +137,7 @@ function abrirCategoria(categoriaId, filtroGenero) {
     var cat = categorias.find(function(c) { return c.id === categoriaId; });
     var nombreCat = cat ? cat.nombre : categoriaId;
     mostrarProductosConBreadcrumb(lista, nombreCat, filtroGenero);
+    window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function mostrarProductosConBreadcrumb(lista, nombreCategoria, filtroGenero) {
